@@ -9,18 +9,24 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
-import static com.enjoyu.admin.common.constant.DateFormatConstant.DEFAULT_DATETIME_PATTERN;
-import static com.enjoyu.admin.common.constant.DateFormatConstant.DEFAULT_DATE_PATTERN;
+import static com.enjoyu.admin.common.constant.DateFormatConstant.*;
 
 @Configuration
 public class ConverterConfig {
 
     public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern(DEFAULT_DATE_PATTERN);
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern(DEFAULT_DATETIME_PATTERN);
+    public static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern(DEFAULT_TIME_PATTERN);
 
+    /**
+     * RequestParam和PathVariable
+     *
+     * @return 旧版日期转换器
+     */
     @Bean
     public Converter<String, Date> dateConverter() {
         return source -> {
@@ -34,13 +40,34 @@ public class ConverterConfig {
 
     }
 
+    /**
+     * RequestParam和PathVariable
+     *
+     * @return 自定义日期转换器
+     */
     @Bean
     public Converter<String, LocalDate> localDateConverter() {
         return source -> LocalDate.parse(source, DATE_FORMATTER);
     }
 
+    /**
+     * RequestParam和PathVariable
+     *
+     * @return 自定义日期时间转换器
+     */
     @Bean
     public Converter<String, LocalDateTime> localDateTimeConverter() {
         return source -> LocalDateTime.parse(source, DATE_TIME_FORMATTER);
     }
+
+    /**
+     * RequestParam和PathVariable
+     *
+     * @return 自定义时间转换器
+     */
+    @Bean
+    public Converter<String, LocalTime> localTimeConverter() {
+        return source -> LocalTime.parse(source, TIME_FORMATTER);
+    }
+
 }

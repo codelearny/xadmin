@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 @Setter
 public class PageRequest {
     @NotNull
-    @Min(value = 0L, message = "页码大于0")
+    @Min(value = 0L, message = "页码必须大于0")
     private Integer pageIndex;
     @NotNull
     private Integer pageSize;

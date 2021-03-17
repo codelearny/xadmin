@@ -26,10 +26,6 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
         </dependency>
@@ -96,14 +92,15 @@
     </dependencyManagement>
 
     <modules>
-        <module>boot</module>
-        <module>web</module>
         <module>domain</module>
+        <module>common</module>
+        <module>application</module>
+        <module>web</module>
+        <module>mybatis</module>
         <module>data-jpa</module>
         <module>data-redis-reactive</module>
-        <module>application</module>
         <module>infrastructure</module>
-        <module>common</module>
+        <module>boot</module>
     </modules>
 
     <properties>

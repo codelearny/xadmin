@@ -24,6 +24,11 @@ import static com.enjoyu.admin.common.constant.DateFormatConstant.*;
 @Configuration
 public class JacksonConfig {
 
+    /**
+     * json 自定义序列化和反序列化
+     *
+     * @return jackson
+     */
     @Bean
     public Jackson2ObjectMapperBuilderCustomizer jackson2ObjectMapperBuilderCustomizer() {
         return builder -> builder

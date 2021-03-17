@@ -37,4 +37,29 @@ public final class CommonResponse<T> {
     public static <E> CommonResponse<E> success() {
         return new CommonResponse<>(HttpStatus.OK.value(), "success", "请求成功", null);
     }
+
+    public static <E> CommonResponse<E> success(E body) {
+        return new CommonResponse<>(HttpStatus.OK.value(), "success", "请求成功", body);
+    }
+
+    public static <E> CommonResponse<E> error(Exception e) {
+        return new CommonResponse<>(HttpStatus.INTERNAL_SERVER_ERROR.value(), "error", e.getMessage(), null);
+    }
+
+    public static <E> CommonResponse<E> error(HttpStatus status, Exception e) {
+        return new CommonResponse<>(status.value(), "error", e.getMessage(), null);
+    }
+
+    public static <E> CommonResponse<E> error(HttpStatus status, String errorCode, String errorMsg) {
+        return new CommonResponse<>(status.value(), errorCode, errorMsg, null);
+    }
+
+    public static <E> CommonResponse<E> forbidden(String errorMsg) {
+        return new CommonResponse<>(HttpStatus.FORBIDDEN.value(), HttpStatus.FORBIDDEN.getReasonPhrase(), errorMsg, null);
+    }
+
+    public static <E> CommonResponse<E> unauthorized(String errorMsg) {
+        return new CommonResponse<>(HttpStatus.UNAUTHORIZED.value(), HttpStatus.UNAUTHORIZED.getReasonPhrase(), errorMsg, null);
+    }
+
 }
