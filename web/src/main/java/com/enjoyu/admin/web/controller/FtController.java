@@ -1,7 +1,8 @@
-package com.enjoyu.admin.controller;
+package com.enjoyu.admin.web.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,4 +20,8 @@ public class FtController {
         log.info(xml);
     }
 
+    @PostMapping("/test")
+    public void test(){
+
+    }
 }

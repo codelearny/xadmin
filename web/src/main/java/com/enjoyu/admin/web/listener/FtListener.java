@@ -1,4 +1,4 @@
-package com.enjoyu.admin.listener;
+package com.enjoyu.admin.web.listener;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.annotation.Order;

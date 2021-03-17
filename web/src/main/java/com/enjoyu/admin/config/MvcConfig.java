@@ -6,7 +6,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-@ServletComponentScan({"com/enjoyu/admin/filter","com/enjoyu/admin/listener"})
+@ServletComponentScan({"com/enjoyu/admin/web/filter", "com/enjoyu/admin/web/listener"})
 public class MvcConfig implements WebMvcConfigurer {
 
     @Override

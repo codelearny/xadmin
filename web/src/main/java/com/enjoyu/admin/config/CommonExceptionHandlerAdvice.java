@@ -12,8 +12,11 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * 通用异常处理
+ */
 @RestControllerAdvice
-public class ControllerAdvice extends ResponseEntityExceptionHandler {
+public class CommonExceptionHandlerAdvice extends ResponseEntityExceptionHandler {
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
@@ -23,6 +26,8 @@ public class ControllerAdvice extends ResponseEntityExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Exception.class)
     ResponseEntity<?> appException(HttpServletRequest request, Throwable ex) {
+        String requestURI = request.getRequestURI();
+        logger.error(requestURI + " 请求异常", ex);
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 

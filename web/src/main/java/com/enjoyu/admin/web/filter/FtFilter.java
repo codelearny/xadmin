@@ -1,4 +1,4 @@
-package com.enjoyu.admin.filter;
+package com.enjoyu.admin.web.filter;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.annotation.Order;
