@@ -25,7 +25,7 @@ public class CommonResponseBodyAdvice implements ResponseBodyAdvice<Object> {
             return body;
         }
 
-        return new CommonResponse<Object>(body);
+        return new CommonResponse<>(body);
     }
 
 }
