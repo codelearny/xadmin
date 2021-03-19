@@ -51,11 +51,16 @@ spring:
       - demo1
       - demo2
       - demo3
+    redis:
+      time-to-live: 100
+    type: redis
+
+
   redis:
     database: ${REDIS_DB:0}
     host: ${REDIS_HOST:127.0.0.1}
     port: ${REDIS_PORT:6379}
-    password: ${REDIS_PWD:}
+    password: ${REDIS_PWD:Hjv@Y&*(O8JY&Y0T^&3J}
     timeout: 5000
     lettuce:
       pool:

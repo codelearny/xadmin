@@ -1,4 +1,4 @@
-package com.enjoyu.admin.cache.config;
+package com.enjoyu.admin.integration.cache;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -26,7 +26,8 @@ public class CacheConfigTest {
     @ParameterizedTest
     @ValueSource(strings = {"静夜思", "静夜思", "相思"})
     void testCache(String name) {
-        cacheService.getFromDB(name);
+        String fromDB = cacheService.getFromDB(name);
+        System.out.println(fromDB);
     }
 
 }

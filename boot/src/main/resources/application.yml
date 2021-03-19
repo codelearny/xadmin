@@ -1,11 +1,12 @@
 server:
-  port: 8000
+  port: 8888
   servlet:
     application-display-name: admin
     session:
       timeout: 10m
       cookie:
         http-only: true
+    context-path: /xadmin
   shutdown: graceful
 
 spring:
@@ -25,10 +26,6 @@ spring:
 
   jackson:
     time-zone: GMT+8
-  data:
-    redis:
-      repositories:
-      enabled: false
 
   datasource:
     hikari:

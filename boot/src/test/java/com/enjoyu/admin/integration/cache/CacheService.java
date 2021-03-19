@@ -1,4 +1,4 @@
-package com.enjoyu.admin.cache.config;
+package com.enjoyu.admin.integration.cache;
 
 import org.springframework.boot.test.context.TestComponent;
 import org.springframework.cache.annotation.Cacheable;
