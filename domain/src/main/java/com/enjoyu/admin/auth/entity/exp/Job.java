@@ -1,4 +1,4 @@
-package com.enjoyu.admin.jpa.entity;
+package com.enjoyu.admin.auth.entity.exp;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -10,7 +10,6 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Entity
 @Getter
 @Setter
 @Table(name = "sys_job")

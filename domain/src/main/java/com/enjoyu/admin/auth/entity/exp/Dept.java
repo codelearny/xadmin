@@ -1,4 +1,4 @@
-package com.enjoyu.admin.jpa.entity;
+package com.enjoyu.admin.auth.entity.exp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
@@ -12,7 +12,6 @@ import java.io.Serializable;
 import java.util.Objects;
 import java.util.Set;
 
-@Entity
 @Getter
 @Setter
 @Table(name = "sys_dept")
@@ -29,6 +28,11 @@ public class Dept extends BaseEntity implements Serializable {
     @ManyToMany(mappedBy = "depts")
     @ApiModelProperty(value = "角色")
     private Set<Role> roles;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "dept",orphanRemoval = false)
+    @ApiModelProperty(value = "员工")
+    private Set<User> users;
 
     @ApiModelProperty(value = "排序")
     private Integer deptSort;

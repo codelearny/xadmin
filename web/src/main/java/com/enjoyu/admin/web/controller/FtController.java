@@ -2,11 +2,18 @@ package com.enjoyu.admin.web.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.beans.PropertyEditorSupport;
+import java.util.Date;
+
 @Slf4j
+@Validated
 @RestController
 @RequestMapping("/ft")
 public class FtController {
@@ -21,7 +28,17 @@ public class FtController {
     }
 
     @PostMapping("/test")
-    public void test(){
+    public void test() {
 
+    }
+
+    @InitBinder
+    public void addEditor(WebDataBinder binder) {
+        binder.registerCustomEditor(Date.class, new PropertyEditorSupport() {
+            @Override
+            public void setAsText(String text) throws IllegalArgumentException {
+                setValue(new Date());
+            }
+        });
     }
 }

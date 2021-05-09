@@ -1,17 +1,15 @@
-package com.enjoyu.admin.jpa.entity;
+package com.enjoyu.admin.auth.entity.exp;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.Column;
-import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -20,7 +18,7 @@ import java.sql.Timestamp;
 @Setter
 @ToString
 @MappedSuperclass
-@EntityListeners(AuditingEntityListener.class)
+//@EntityListeners(AuditingEntityListener.class)
 public class BaseEntity implements Serializable {
 
     @CreatedBy
@@ -33,12 +31,12 @@ public class BaseEntity implements Serializable {
     @ApiModelProperty(value = "更新人", hidden = true)
     private String updatedBy;
 
-    @CreationTimestamp
+    @CreatedDate
     @Column(name = "create_time", updatable = false)
     @ApiModelProperty(value = "创建时间", hidden = true)
     private Timestamp createTime;
 
-    @UpdateTimestamp
+    @LastModifiedDate
     @Column(name = "update_time")
     @ApiModelProperty(value = "更新时间", hidden = true)
     private Timestamp updateTime;

@@ -5,15 +5,19 @@ spring:
     username: root
     password: root
     hikari:
+      pool-name: hikari-pool-
       minimum-idle: 4
       maximum-pool-size: 8
+      connection-timeout: 30000
       connection-test-query: SELECT 1
 
   jpa:
+    database: mysql
+    show-sql: true
     properties:
       hibernate:
         ddl-auto: none
-        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        dialect: org.hibernate.dialect.MySQL8Dialect
     open-in-view: true
 
   codec:
@@ -58,6 +62,13 @@ spring:
         min-idle: 0
         max-idle: 8
         max-wait: -1
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      transaction-id-prefix: x-kfk-
+    consumer:
+      group-id: atx
 
   devtools:
     restart:

@@ -1,3 +1,6 @@
+-- 创建数据库 xadmin
+CREATE DATABASE xadmin;
+USE xadmin;
 -- 系统管理模块 smm
 -- 管理员用户
 DROP TABLE IF EXISTS `smm_user`;
@@ -6,7 +9,7 @@ CREATE TABLE `smm_user`
     id          INT UNSIGNED AUTO_INCREMENT NOT NULL COMMENT '用户ID',
     username    VARCHAR(64)                 NOT NULL COMMENT '用户名',
     password    VARCHAR(64)                 NOT NULL COMMENT '密码',
-    phone       INT                                  DEFAULT NULL COMMENT '手机号',
+    phone       CHAR(11)                                  DEFAULT NULL COMMENT '手机号',
     status      BIT                         NOT NULL DEFAULT 1 COMMENT '用户状态:0->禁用；1->启用',
     create_time DATETIME COMMENT '创建时间',
     login_time  TIMESTAMP COMMENT '最后登录时间',

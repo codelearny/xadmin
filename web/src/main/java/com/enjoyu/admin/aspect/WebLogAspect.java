@@ -12,8 +12,6 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 import java.time.Duration;
 import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.Arrays;
 
 @Slf4j
@@ -31,7 +29,7 @@ public class WebLogAspect {
         HttpServletRequest request = attributes.getRequest();
         log.info("\n>>请求地址 : {}\n>>IP : {}\n>>HTTP METHOD : {}\n>>CLASS_METHOD : {}.{}\n>>参数 : {}",
                 request.getRequestURL().toString(),
-                WebIPUtil.getIpAddress(request),
+                WebIPUtil.extractIpAddress(request),
                 request.getMethod(),
                 joinPoint.getSignature().getDeclaringTypeName(),
                 joinPoint.getSignature().getName(),

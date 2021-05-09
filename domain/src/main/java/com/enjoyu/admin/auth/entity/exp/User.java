@@ -1,4 +1,4 @@
-package com.enjoyu.admin.jpa.entity;
+package com.enjoyu.admin.auth.entity.exp;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -14,7 +14,6 @@ import java.util.Objects;
 import java.util.Set;
 
 
-@Entity
 @Getter
 @Setter
 @Table(name = "sys_user")
@@ -41,7 +40,7 @@ public class User extends BaseEntity implements Serializable {
             inverseJoinColumns = {@JoinColumn(name = "job_id", referencedColumnName = "job_id")})
     private Set<Job> jobs;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "dept_id")
     @ApiModelProperty(value = "用户部门")
     private Dept dept;

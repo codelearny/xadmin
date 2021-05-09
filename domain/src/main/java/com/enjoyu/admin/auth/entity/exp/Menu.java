@@ -1,4 +1,4 @@
-package com.enjoyu.admin.jpa.entity;
+package com.enjoyu.admin.auth.entity.exp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
@@ -11,7 +11,6 @@ import java.io.Serializable;
 import java.util.Objects;
 import java.util.Set;
 
-@Entity
 @Getter
 @Setter
 @Table(name = "sys_menu")

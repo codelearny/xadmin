@@ -1,4 +1,4 @@
-package com.enjoyu.admin.jpa.entity;
+package com.enjoyu.admin.auth.entity.exp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
@@ -14,7 +14,6 @@ import java.util.Set;
 
 @Getter
 @Setter
-@Entity
 @Table(name = "sys_role")
 public class Role extends BaseEntity implements Serializable {
 
@@ -47,9 +46,6 @@ public class Role extends BaseEntity implements Serializable {
     @NotBlank
     @ApiModelProperty(value = "名称", hidden = true)
     private String name;
-
-    @ApiModelProperty(value = "数据权限，全部 、 本级 、 自定义")
-    private String dataScope = DataScopeEnum.THIS_LEVEL.getValue();
 
     @Column(name = "level")
     @ApiModelProperty(value = "级别，数值越小，级别越大")

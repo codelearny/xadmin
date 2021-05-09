@@ -70,6 +70,16 @@
             </dependency>
             <dependency>
                 <groupId>com.enjoyu</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.enjoyu</groupId>
+                <artifactId>kafka</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.enjoyu</groupId>
                 <artifactId>data-redis-reactive</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
@@ -99,6 +109,7 @@
         <module>mybatis</module>
         <module>data-jpa</module>
         <module>data-redis-reactive</module>
+        <module>kafka</module>
         <module>infrastructure</module>
         <module>boot</module>
     </modules>
