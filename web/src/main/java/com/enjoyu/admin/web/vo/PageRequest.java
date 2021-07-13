@@ -6,6 +6,9 @@ import lombok.Setter;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+/**
+ * @author enjoyu
+ */
 @Getter
 @Setter
 public class PageRequest {

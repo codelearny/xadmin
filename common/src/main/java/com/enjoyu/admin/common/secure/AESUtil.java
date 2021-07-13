@@ -17,9 +17,11 @@ import java.security.SecureRandom;
  * 使用CBC模式，需要一个初始向量iv，可增加加密算法的强度
  * 填充方式为NoPadding时，最后一个块的填充内容由程序员确定，通常为0.
  * 填充方式为Pkcs5Padding时，最后一个块需要填充χ个字节，填充的值就是χ，也就是填充内容由JDK确定
+ *
+ * @author enjoyu
  */
 public abstract class AESUtil {
-    private static final int bits = 256 >> 3;
+    private static final int BITS = 256 >> 3;
     private static final String AES = "AES";
     private static final String AES_CBC_PKCS5_PADDING = "AES/CBC/PKCS5Padding";
 
@@ -69,7 +71,7 @@ public abstract class AESUtil {
      * @return SecretKeySpec
      */
     private static SecretKeySpec genKey(byte[] key) {
-        byte[] arr = new byte[bits];
+        byte[] arr = new byte[BITS];
         System.arraycopy(key, 0, arr, 0, Math.min(key.length, arr.length));
         return new SecretKeySpec(arr, AES);
     }

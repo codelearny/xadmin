@@ -7,6 +7,9 @@ import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
 
+/**
+ * @author enjoyu
+ */
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public final class CommonResponse<T> {

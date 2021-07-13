@@ -6,6 +6,11 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
+/**
+ * 命名数据源注解切面
+ *
+ * @author enjoyu
+ */
 @Aspect
 public class NamingDynamicDataSourceExchange {
     @Pointcut("@annotation(com.enjoyu.admin.common.datasource.NamingDataSource)")

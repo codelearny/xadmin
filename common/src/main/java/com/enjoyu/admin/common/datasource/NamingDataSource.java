@@ -2,6 +2,11 @@ package com.enjoyu.admin.common.datasource;
 
 import java.lang.annotation.*;
 
+/**
+ * 命名数据源注解
+ *
+ * @author enjoyu
+ */
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented

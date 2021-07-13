@@ -13,6 +13,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
+/**
+ * SpringMVC配置类
+ *
+ * @author enjoyu
+ */
 @Configuration
 @ServletComponentScan({"com/enjoyu/admin/web/filter", "com/enjoyu/admin/web/listener"})
 public class MvcConfig implements WebMvcConfigurer {

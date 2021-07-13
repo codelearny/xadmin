@@ -9,9 +9,10 @@ import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * HMAC是密钥相关的哈希运算消息认证码
+ * HMAC是密钥相关的哈希运算消息认证码<br>
  * Keyed-hash Message Authentication Code
  * Hash-based Message Authentication Code(RFC2104)
+ * @author enjoyu
  */
 public abstract class HmacUtil {
 

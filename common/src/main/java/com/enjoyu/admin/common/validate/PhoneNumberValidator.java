@@ -8,6 +8,11 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * 电话号码校验类
+ *
+ * @author enjoyu
+ */
 public class PhoneNumberValidator implements ConstraintValidator<PhoneNumber, CharSequence> {
     private PhoneNumber ann;
     private Pattern pattern;

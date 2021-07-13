@@ -1,6 +1,5 @@
 package com.enjoyu.admin.auth.entity.exp;
 
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,20 +17,16 @@ public class Job extends BaseEntity implements Serializable {
     @Id
     @Column(name = "job_id")
     @NotNull(groups = Update.class)
-    @ApiModelProperty(value = "ID", hidden = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
-    @ApiModelProperty(value = "岗位名称")
     private String name;
 
     @NotNull
-    @ApiModelProperty(value = "岗位排序")
     private Long jobSort;
 
     @NotNull
-    @ApiModelProperty(value = "是否启用")
     private Boolean enabled;
 
     @Override

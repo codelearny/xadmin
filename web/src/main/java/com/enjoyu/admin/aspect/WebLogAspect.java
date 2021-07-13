@@ -1,6 +1,6 @@
 package com.enjoyu.admin.aspect;
 
-import com.enjoyu.admin.utils.WebIPUtil;
+import com.enjoyu.admin.utils.WebIpUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -29,7 +29,7 @@ public class WebLogAspect {
         HttpServletRequest request = attributes.getRequest();
         log.info("\n>>请求地址 : {}\n>>IP : {}\n>>HTTP METHOD : {}\n>>CLASS_METHOD : {}.{}\n>>参数 : {}",
                 request.getRequestURL().toString(),
-                WebIPUtil.extractIpAddress(request),
+                WebIpUtil.extractIpAddress(request),
                 request.getMethod(),
                 joinPoint.getSignature().getDeclaringTypeName(),
                 joinPoint.getSignature().getName(),

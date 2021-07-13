@@ -13,6 +13,8 @@ import java.security.NoSuchAlgorithmException;
  * 对于给定数量的更新数据，digest 方法只能被调用一次。在调用 digest 之后，MessageDigest 对象被重新设置成其初始状态。
  * </p>
  * java8 提供的摘要算法 https://docs.oracle.com/javase/8/docs/technotes/guides/security/StandardNames.html#MessageDigest
+ *
+ * @author enjoyu
  */
 public abstract class DigestUtil {
 

@@ -8,10 +8,12 @@ import java.security.*;
 import java.security.spec.InvalidKeySpecException;
 
 /**
- * Password Base Encryption
- * 基于口令加密
- * 采用随机数（这里我们叫做盐）杂凑多重加密等方法保证数据的安全性
+ * Password Base Encryption<br>
+ * 基于口令加密<br>
+ * 采用随机数（这里我们叫做盐）杂凑多重加密等方法保证数据的安全性<br>
  * PBEWithHmacSHA256AndAES_128算法内部使用CBC模式AES，需要提供iv(16bytes)
+ *
+ * @author enjoyu
  */
 public abstract class PBEUtil {
     private static final String PBEWITH_HMAC_SHA_256_AND_AES_128 = "PBEWithHmacSHA256AndAES_128";

@@ -1,7 +1,5 @@
 package com.enjoyu.admin.auth.entity.exp;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,6 +10,9 @@ import java.io.Serializable;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * @author enjoyu
+ */
 @Getter
 @Setter
 @Table(name = "sys_dept")
@@ -20,35 +21,25 @@ public class Dept extends BaseEntity implements Serializable {
     @Id
     @Column(name = "dept_id")
     @NotNull(groups = Update.class)
-    @ApiModelProperty(value = "ID", hidden = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonIgnore
     @ManyToMany(mappedBy = "depts")
-    @ApiModelProperty(value = "角色")
     private Set<Role> roles;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "dept",orphanRemoval = false)
-    @ApiModelProperty(value = "员工")
+    @OneToMany(mappedBy = "dept", orphanRemoval = false)
     private Set<User> users;
 
-    @ApiModelProperty(value = "排序")
     private Integer deptSort;
 
     @NotBlank
-    @ApiModelProperty(value = "部门名称")
     private String name;
 
     @NotNull
-    @ApiModelProperty(value = "是否启用")
     private Boolean enabled;
 
-    @ApiModelProperty(value = "上级部门")
     private Long pid;
 
-    @ApiModelProperty(value = "子节点数目", hidden = true)
     private Integer subCount = 0;
 
     @Override

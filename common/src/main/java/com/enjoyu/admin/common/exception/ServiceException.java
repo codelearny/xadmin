@@ -1,5 +1,10 @@
 package com.enjoyu.admin.common.exception;
 
+/**
+ * 业务异常
+ *
+ * @author enjoyu
+ */
 public class ServiceException extends BaseException {
 
     public ServiceException(String message) {

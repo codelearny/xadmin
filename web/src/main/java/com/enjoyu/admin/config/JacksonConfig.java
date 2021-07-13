@@ -21,6 +21,11 @@ import java.util.Date;
 
 import static com.enjoyu.admin.common.constant.DateFormatConstant.*;
 
+/**
+ * Jackson配置
+ *
+ * @author enjoyu
+ */
 @Configuration
 public class JacksonConfig {
 

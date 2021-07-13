@@ -23,26 +23,27 @@ import java.util.Base64;
  *     <li>码表转换。</li>
  * </ol>
  * </p>
+ * @author enjoyu
  */
 public abstract class EncodeUtil {
-    private static final Charset defaultCharset = StandardCharsets.UTF_8;
+    private static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
     public static final String GBK = "GBK";
     public static final String GB2312 = "GB2312";
 
     public static String urlEncode(String message, Charset charset) throws UnsupportedEncodingException {
-        return urlEncode(message, charset == null ? defaultCharset.name() : charset.name());
+        return urlEncode(message, charset == null ? DEFAULT_CHARSET.name() : charset.name());
     }
 
     public static String urlEncode(String message, String charset) throws UnsupportedEncodingException {
-        return URLEncoder.encode(message, charset == null ? defaultCharset.name() : charset);
+        return URLEncoder.encode(message, charset == null ? DEFAULT_CHARSET.name() : charset);
     }
 
     public static String urlDecode(String message, Charset charset) throws UnsupportedEncodingException {
-        return urlDecode(message, charset == null ? defaultCharset.name() : charset.name());
+        return urlDecode(message, charset == null ? DEFAULT_CHARSET.name() : charset.name());
     }
 
     public static String urlDecode(String message, String charset) throws UnsupportedEncodingException {
-        return URLDecoder.decode(message, charset == null ? defaultCharset.name() : charset);
+        return URLDecoder.decode(message, charset == null ? DEFAULT_CHARSET.name() : charset);
     }
 
     public static String base64Encode(byte[] bytes) {

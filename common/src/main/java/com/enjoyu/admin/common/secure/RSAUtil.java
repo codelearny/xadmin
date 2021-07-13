@@ -12,11 +12,11 @@ import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 
 /**
- * jdk生成keystore
+ * jdk生成keystore<br>
  * keytool -genkeypair -alias x_admin_ca -storetype PKCS12 -storepass whoareyou -keyalg RSA -keysize 1024 -sigalg SHA256withRSA -keystore xadmin.keystore  -dname "CN=www.xadmin.com, OU=xadmin.com, O=xadmin, L=BJ, ST=BJ, C=CN"
- * 查看证书库
+ * <br>查看证书库<br>
  * keytool -list -v -keystore xadmin.keystore
- * 导出证书
+ * <br>导出证书<br>
  * keytool -export -alias x_admin_ca -file x_admin_ca.crt -keystore xadmin.keystore
  */
 public abstract class RSAUtil {

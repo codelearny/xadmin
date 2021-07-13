@@ -15,6 +15,11 @@ import java.util.Date;
 
 import static com.enjoyu.admin.common.constant.DateFormatConstant.*;
 
+/**
+ * 自定义时间格式转换
+ *
+ * @author enjoyu
+ */
 @Configuration
 public class ConverterConfig {
 

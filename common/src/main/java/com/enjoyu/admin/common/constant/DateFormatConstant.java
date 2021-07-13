@@ -1,5 +1,10 @@
 package com.enjoyu.admin.common.constant;
 
+/**
+ * 日期格式常量
+ *
+ * @author enjoyu
+ */
 public class DateFormatConstant {
     /**
      * DateTime格式化字符串

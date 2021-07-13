@@ -1,0 +1,33 @@
+server:
+  port: 8888
+  servlet:
+    application-display-name: x-admin
+    session:
+      timeout: 10m
+      cookie:
+        http-only: true
+    context-path: /xadmin
+  shutdown: graceful
+  tomcat:
+    basedir: /tmp
+
+spring:
+  application:
+    name: admin
+  profiles:
+    active: dev
+
+  freemarker:
+    check-template-location: false
+
+  security:
+    user:
+      name: admin
+      password: xxx
+
+  jackson:
+    time-zone: GMT+8
+
+x-admin:
+  kafka:
+    enable: false

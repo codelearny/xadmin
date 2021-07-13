@@ -1,5 +1,10 @@
 package com.enjoyu.admin.common.exception;
 
+/**
+ * 异常基类
+ *
+ * @author enjoyu
+ */
 public abstract class BaseException extends RuntimeException {
     public BaseException() {
     }
