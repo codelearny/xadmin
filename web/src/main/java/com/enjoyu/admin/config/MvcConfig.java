@@ -1,13 +1,16 @@
 package com.enjoyu.admin.config;
 
+import com.enjoyu.admin.component.mvc.LogIntercepter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.ServletComponentScan;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.nio.charset.StandardCharsets;
@@ -19,7 +22,8 @@ import java.util.List;
  * @author enjoyu
  */
 @Configuration
-@ServletComponentScan({"com/enjoyu/admin/web/filter", "com/enjoyu/admin/web/listener"})
+@ComponentScan("com.enjoyu.admin.web")
+@ServletComponentScan({"com.enjoyu.admin.web.filter", "com.enjoyu.admin.web.listener"})
 public class MvcConfig implements WebMvcConfigurer {
 
     @Autowired
@@ -43,4 +47,8 @@ public class MvcConfig implements WebMvcConfigurer {
         });
     }
 
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new LogIntercepter()).addPathPatterns("/**");
+    }
 }

@@ -1,10 +1,9 @@
-package com.enjoyu.admin.common.datasource;
+package com.enjoyu.admin.component.datasource;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
-import org.springframework.stereotype.Component;
 
 /**
  * 命名数据源注解切面
@@ -13,7 +12,7 @@ import org.springframework.stereotype.Component;
  */
 @Aspect
 public class NamingDynamicDataSourceExchange {
-    @Pointcut("@annotation(com.enjoyu.admin.common.datasource.NamingDataSource)")
+    @Pointcut("@annotation(com.enjoyu.admin.component.datasource.NamingDataSource)")
     public void ann() {
     }
 

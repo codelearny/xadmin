@@ -3,13 +3,11 @@ package com.enjoyu.admin.web.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.beans.PropertyEditorSupport;
 import java.util.Date;
@@ -32,10 +30,18 @@ public class TestController {
         log.info(xml);
     }
 
-    @PostMapping("/test")
-    public void test() {
-
+    @PostMapping("/hello")
+    public String test() {
+        return "hello";
     }
+
+    @GetMapping("/user/{id}")
+    public String serv(@PathVariable String id) {
+        return testService.getData(id);
+    }
+
+    @Autowired
+    TestService testService;
 
     @InitBinder
     public void addEditor(WebDataBinder binder) {

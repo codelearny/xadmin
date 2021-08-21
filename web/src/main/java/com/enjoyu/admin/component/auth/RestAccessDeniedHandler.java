@@ -22,7 +22,7 @@ public class RestAccessDeniedHandler implements AccessDeniedHandler {
     public void handle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AccessDeniedException e) throws IOException, ServletException {
         httpServletResponse.setCharacterEncoding("UTF-8");
         httpServletResponse.setContentType("application/json");
-        httpServletResponse.getWriter().println(jacksonObjectMapper.writeValueAsString(CommonResponse.forbidden(e.getMessage())));
+        httpServletResponse.getWriter().println(jacksonObjectMapper.writeValueAsString(CommonResponse.error(e)));
         httpServletResponse.getWriter().flush();
     }
 }

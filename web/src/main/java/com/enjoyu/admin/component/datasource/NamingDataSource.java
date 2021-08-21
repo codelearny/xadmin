@@ -1,4 +1,4 @@
-package com.enjoyu.admin.common.datasource;
+package com.enjoyu.admin.component.datasource;
 
 import java.lang.annotation.*;
 

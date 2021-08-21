@@ -1,6 +1,8 @@
 package com.enjoyu.admin.integration.easyexcel;
 
 import com.alibaba.excel.EasyExcel;
+import com.alibaba.excel.ExcelReader;
+import com.alibaba.excel.read.metadata.ReadSheet;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -20,6 +22,28 @@ public class EasyExcelTest {
         String fileName = TestFileUtil.getPath() + "demo" + File.separator + "demo.xlsx";
         // 这里 需要指定读用哪个class去读，然后读取第一个sheet 文件流会自动关闭
         EasyExcel.read(fileName, DemoData.class, new DemoDataListener()).sheet().doRead();
+    }
+
+    @Test
+    public void multiSheetRead() {
+        ExcelReader reader = null;
+        try {
+            String fileName = TestFileUtil.getPath() + "demo" + File.separator + "demo.xlsx";
+            reader = EasyExcel.read(fileName).build();
+            DemoDataListener listener0 = new DemoDataListener();
+            DemoDataListener listener1 = new DemoDataListener();
+            ReadSheet sheet0 = EasyExcel.readSheet("sheet0").headRowNumber(3).head(DemoData.class).registerReadListener(listener0).build();
+            ReadSheet sheet1 = EasyExcel.readSheet("sheet1").headRowNumber(3).head(DemoData.class).registerReadListener(listener1).build();
+
+            reader.read(sheet0, sheet1);
+            System.out.println(listener0.list);
+            System.out.println(listener1.list);
+
+        } finally {
+            if (reader != null) {
+                reader.finish();
+            }
+        }
     }
 
     /**

@@ -11,6 +11,7 @@ import org.mybatis.generator.internal.util.StringUtility;
 import java.util.Properties;
 
 import static com.enjoyu.admin.common.constant.Sign.DOUBLE_QUOTE;
+import static com.enjoyu.admin.common.constant.Sign.SINGLE_QUOTE;
 
 /**
  * @author enjoyu
@@ -40,7 +41,7 @@ public class SwaggerCommentGenerator extends DefaultCommentGenerator {
         if (addRemarkComments && StringUtility.stringHasValue(remarks)) {
             //数据库中特殊字符需要转义
             if (remarks.contains(DOUBLE_QUOTE)) {
-                remarks = remarks.replace("\"", "'");
+                remarks = remarks.replace(DOUBLE_QUOTE, SINGLE_QUOTE);
             }
             //给model的字段添加swagger注解
             field.addJavaDocLine("@ApiModelProperty(value = \"" + remarks + "\")");

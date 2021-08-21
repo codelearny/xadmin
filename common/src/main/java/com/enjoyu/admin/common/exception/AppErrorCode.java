@@ -1,14 +1,9 @@
 package com.enjoyu.admin.common.exception;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
 /**
  * @author enjoyu
  */
 
-@Getter
-@AllArgsConstructor
 public enum AppErrorCode implements ErrorCode {
     /**
      * 异常码定义
@@ -17,6 +12,20 @@ public enum AppErrorCode implements ErrorCode {
     NO_SERVICE("404", "网络异常, 服务器熔断"),
     ;
 
+    AppErrorCode(String code, String desc) {
+        this.code = code;
+        this.desc = desc;
+    }
+
+    @Override
+    public String getCode() {
+        return code;
+    }
+
+    @Override
+    public String getDesc() {
+        return desc;
+    }
 
     private final String code;
     private final String desc;

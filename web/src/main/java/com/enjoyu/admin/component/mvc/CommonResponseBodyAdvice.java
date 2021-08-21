@@ -11,6 +11,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 /**
  * 通用返回
+ *
  * @author enjoyu
  */
 @RestControllerAdvice
@@ -25,8 +26,7 @@ public class CommonResponseBodyAdvice implements ResponseBodyAdvice<Object> {
         if (body instanceof CommonResponse) {
             return body;
         }
-
-        return new CommonResponse<>(body);
+        return CommonResponse.success(body);
     }
 
 }
