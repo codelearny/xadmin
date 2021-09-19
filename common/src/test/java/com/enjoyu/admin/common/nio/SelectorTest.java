@@ -38,6 +38,7 @@ public class SelectorTest {
                     socketChannel.configureBlocking(false);
                     SelectionKey key1 = socketChannel.register(selector, SelectionKey.OP_READ);
                     key1.attach(new Processor(socketChannel, key1));
+
                 } else if (key.isReadable()) {
                     Processor p = (Processor) key.attachment();
                     p.onRead();

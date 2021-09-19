@@ -17,6 +17,7 @@ import static org.mockito.Mockito.*;
 public class MockitoTest {
 
     @Test
+    @SuppressWarnings("unchecked")
     public void m() {
         List<String> mockedList = mock(List.class);
         when(mockedList.get(0)).thenReturn("first");

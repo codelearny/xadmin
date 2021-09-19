@@ -4,6 +4,7 @@ import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -15,53 +16,84 @@ public class CollectorsTest {
     @BeforeAll
     public static void init() {
         dataList = Lists.newArrayList(
-                new Data(1, 2, "pig"),
-                new Data(1, 3, "cow"),
-                new Data(2, 1, "ant"),
-                new Data(2, 1, "fox"),
-                new Data(13, 11, "duck"),
-                new Data(12, 2, "chicken"),
-                new Data(10, 5, "fish"),
-                new Data(10, 5, "butterfly")
+                new Data(1, "a", "pig"),
+                new Data(1, "b", "cow"),
+                new Data(2, "a", "ant"),
+                new Data(2, "b", "fox"),
+                new Data(13, "c", "duck"),
+                new Data(12, "d", "chicken"),
+                new Data(10, "f", "fish"),
+                new Data(10, "f", "butterfly")
         );
     }
 
     @Test
     public void testGroupingBy() {
-        Map<Integer, List<Data>> collect = dataList.stream().collect(
+        Map<String, List<Data>> collect = dataList.stream().collect(
                 Collectors.groupingBy(data -> data.id + data.tag,
                         Collectors.toList())
         );
         System.out.println(collect.getClass());
         System.out.println(collect);
 
-        Map<Integer, Long> counting = dataList.stream().collect(
+        Map<String, Long> counting = dataList.stream().collect(
                 Collectors.groupingBy(data -> data.id + data.tag,
                         Collectors.counting())
         );
         System.out.println(counting);
 
-        Map<Integer, Set<String>> collect1 = dataList.stream().collect(
+        Map<String, Set<String>> collect1 = dataList.stream().collect(
                 Collectors.groupingBy(data -> data.id + data.tag,
                         Collectors.mapping(data -> data.name,
                                 Collectors.toSet()))
         );
-        Map<Integer, List<String>> collect2 = dataList.stream().collect(
-                Collectors.groupingBy(data -> data.id + data.tag,
-                        Collectors.mapping(data -> data.name,
-                                Collectors.toList()))
+        Map<Integer, Map<String, List<Data>>> collect2 = dataList.stream().collect(
+                Collectors.groupingBy(data -> data.id,
+                        Collectors.groupingBy(data -> data.tag,
+                                Collectors.toList()
+                        )
+                )
         );
         System.out.println(collect1);
         System.out.println(collect2);
 
     }
 
+    @Test
+    @SuppressWarnings("unchecked")
+    public void testCollect() {
+        HashMap<String, Object> collect = dataList.stream().collect(
+                HashMap::new, (x, y) -> {
+                    x.compute(y.id + "", (k, v) -> {
+                        if (v == null) {
+                            v = new HashMap<>();
+                        }
+                        HashMap<String,String> v1 = (HashMap<String,String>) v;
+                        v1.put(y.tag, y.name);
+                        return v1;
+                    });
+                    x.compute("count", (s, c) -> {
+                        if (c != null) {
+                            Integer c1 = (Integer) c;
+                            return c1 + 1;
+                        }
+                        return 1;
+                    });
+                },
+                (hashMap, hashMap2) -> {
+                    System.out.println(hashMap + "-----" + hashMap2);
+                }
+
+        );
+        System.out.println(collect);
+    }
+
     static class Data {
         private int id;
-        private int tag;
+        private String tag;
         private String name;
 
-        public Data(int id, int tag, String name) {
+        public Data(int id, String tag, String name) {
             this.id = id;
             this.tag = tag;
             this.name = name;
@@ -75,11 +107,11 @@ public class CollectorsTest {
             this.id = id;
         }
 
-        public int getTag() {
+        public String getTag() {
             return tag;
         }
 
-        public void setTag(int tag) {
+        public void setTag(String tag) {
             this.tag = tag;
         }
 

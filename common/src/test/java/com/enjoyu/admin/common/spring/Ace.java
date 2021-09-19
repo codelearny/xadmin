@@ -1,4 +1,4 @@
-package com.tet;
+package com.enjoyu.admin.common.spring;
 
 import java.util.Arrays;
 import java.util.List;

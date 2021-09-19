@@ -1,4 +1,4 @@
-package com.tet;
+package com.enjoyu.admin.common.spring;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.DirectFieldAccessor;

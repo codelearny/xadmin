@@ -8,7 +8,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
-//@Entity
 @Data
 @Table(name = "smm_user_role")
 public class UserRole implements Serializable {

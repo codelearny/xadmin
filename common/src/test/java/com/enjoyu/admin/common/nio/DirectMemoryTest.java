@@ -1,8 +1,6 @@
 package com.enjoyu.admin.common.nio;
 
 import org.junit.jupiter.api.Test;
-import sun.misc.SharedSecrets;
-import sun.misc.VM;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -19,8 +17,6 @@ public class DirectMemoryTest {
     public void ad() {
         ByteBuffer direct = ByteBuffer.allocateDirect(1024);
         System.out.println("运行时最大内存：" + Runtime.getRuntime().maxMemory());
-        System.out.println("最大直接内存：" + VM.maxDirectMemory());
-        System.out.println("NIO缓存池：" + SharedSecrets.getJavaNioAccess().getDirectBufferPool().getTotalCapacity());
     }
 
     Path path1 = Paths.get("src/test/resources/async.txt");

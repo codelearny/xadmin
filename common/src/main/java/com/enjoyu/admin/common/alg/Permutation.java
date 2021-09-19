@@ -1,7 +1,5 @@
 package com.enjoyu.admin.common.alg;
 
-import org.junit.jupiter.api.Test;
-
 import java.util.List;
 
 public class Permutation {
@@ -9,8 +7,4 @@ public class Permutation {
 
     }
 
-    @Test
-    public void test() {
-
-    }
 }

@@ -1,8 +1,8 @@
 package com.enjoyu.admin.common.alg;
 
-import org.junit.jupiter.api.Test;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class Combinations {
@@ -34,12 +34,6 @@ public class Combinations {
             }
         }
 
-        @Test
-        public void combTest() {
-            Integer[] exp = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-            List<Integer[]> comb = comb(exp);
-            comb.stream().map(Arrays::toString).forEach(System.out::println);
-        }
     }
 
     static class ListCombination implements Combination {
@@ -78,11 +72,5 @@ public class Combinations {
             }
         }
 
-        @Test
-        public void combTest() {
-            Integer[] exp = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-            List<Integer[]> comb = comb(exp);
-            comb.stream().map(Arrays::toString).forEach(System.out::println);
-        }
     }
 }
