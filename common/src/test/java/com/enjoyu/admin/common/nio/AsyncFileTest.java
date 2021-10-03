@@ -1,6 +1,6 @@
 package com.enjoyu.admin.common.nio;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -20,7 +20,7 @@ public class AsyncFileTest {
 
     @Test
     public void read() throws IOException {
-        Assert.assertTrue(Files.exists(path));
+        Assertions.assertTrue(Files.exists(path));
         AsynchronousFileChannel afc = AsynchronousFileChannel.open(path, READ);
         ByteBuffer allocate = ByteBuffer.allocate(1000);
         afc.read(allocate, 0, allocate, new CompletionHandler<Integer, ByteBuffer>() {
@@ -44,7 +44,7 @@ public class AsyncFileTest {
 
     @Test
     public void write() throws IOException {
-        Assert.assertTrue(Files.exists(path));
+        Assertions.assertTrue(Files.exists(path));
         AsynchronousFileChannel afc = AsynchronousFileChannel.open(path, WRITE);
         ByteBuffer allocate = ByteBuffer.allocate(1000);
         allocate.put("aw".getBytes());

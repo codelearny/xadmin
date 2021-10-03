@@ -34,23 +34,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!--Spring Cloud 相关依赖-->
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <!--Spring Cloud Alibaba 相关依赖-->
-            <dependency>
-                <groupId>com.alibaba.cloud</groupId>
-                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>${spring-cloud-alibaba.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
             <!--mapStruct-->
             <dependency>
                 <groupId>org.mapstruct</groupId>
@@ -72,39 +55,16 @@
             </dependency>
             <dependency>
                 <groupId>com.enjoyu</groupId>
-                <artifactId>domain</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.enjoyu</groupId>
-                <artifactId>application</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.enjoyu</groupId>
                 <artifactId>common</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.enjoyu</groupId>
-                <artifactId>x-admin-gateway</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.enjoyu</groupId>
-                <artifactId>x-admin-oauth2</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
 
     <modules>
-        <module>domain</module>
         <module>common</module>
-        <module>application</module>
+        <module>exp</module>
         <module>web</module>
-        <module>x-admin-gateway</module>
-        <module>x-admin-oauth2</module>
     </modules>
 
     <properties>
@@ -121,9 +81,7 @@
         <xaVersion>0.0.1-SNAPSHOT</xaVersion>
         <lombok.version>1.18.18</lombok.version>
         <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
-        <spring-boot.version>2.4.6</spring-boot.version>
-        <spring-cloud.version>2020.0.3</spring-cloud.version>
-        <spring-cloud-alibaba.version>2021.1</spring-cloud-alibaba.version>
+        <spring-boot.version>2.5.5</spring-boot.version>
     </properties>
 
     <!-- Build Settings -->

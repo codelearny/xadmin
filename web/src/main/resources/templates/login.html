@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="admin/header :: fragment-header"/>
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <link rel="stylesheet" href="plugins/toastr/toastr.min.css">
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+    <!-- /.login-logo -->
+    <div class="card card-outline card-primary">
+        <div class="card-header text-center">
+            <h1><b>X</b>admin</h1>
+        </div>
+        <div class="card-body">
+            <p class="login-box-msg">Sign in</p>
+
+            <form id="login" method="post">
+                <div class="input-group mb-3">
+                    <input type="text" name="userName" class="form-control" placeholder="请输入账号" required>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="password" name="password" class="form-control" placeholder="密码" required>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="col-6">
+                        <input type="text" name="verifyCode" class="form-control" placeholder="请输入验证码" required>
+                    </div>
+                    <div class="col-6">
+                        <img alt="单击图片刷新！" class="pointer" src="captcha"
+                             onclick="this.src=_ctx + '/captcha?d='+new Date()*1" >
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4"></div>
+                    <div class="col-4">
+                        <a href="register.html" class="btn btn-primary btn-block">Register</a>
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </form>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+</div>
+<!-- /.login-box -->
+
+<th:block th:include="admin/script :: fragment-script"/>
+<script src="plugins/jquery-validate/jquery.validate.min.js"></script>
+<script src="plugins/toastr/toastr.min.js"></script>
+<script src="js/login.js"></script>
+</body>
+</html>

@@ -17,17 +17,23 @@ spring:
   profiles:
     active: dev
 
-  freemarker:
-    check-template-location: false
-
-  security:
-    user:
-      name: admin
-      password: xxx
-
   jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
 
-x-admin:
-  kafka:
-    enable: false
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false
+    encoding: UTF-8
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      logic-delete-field: isDeleted  #全局逻辑删除字段值
+      logic-delete-value: 1 # 逻辑已删除值
+      logic-not-delete-value: 0 # 逻辑未删除值
+  type-aliases-package: com.enjoyu.admin.dao.entity
