@@ -1,5 +1,6 @@
 package com.enjoyu.admin.common;
 
+import com.enjoyu.admin.common.exception.ServiceException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

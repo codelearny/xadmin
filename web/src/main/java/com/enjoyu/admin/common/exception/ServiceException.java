@@ -1,4 +1,4 @@
-package com.enjoyu.admin.common;
+package com.enjoyu.admin.common.exception;
 
 /**
  * @author enjoyu

@@ -1,9 +1,12 @@
 package com.enjoyu.admin.controller;
 
 import com.enjoyu.admin.common.CommonResponse;
-import com.enjoyu.admin.common.ServiceException;
+import com.enjoyu.admin.common.exception.ServiceException;
+import com.enjoyu.admin.shiro.ShiroKit;
 import com.wf.captcha.ArithmeticCaptcha;
 import com.wf.captcha.utils.CaptchaUtil;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,8 +40,9 @@ public class AdminController {
         if (!CaptchaUtil.ver(verifyCode, request)) {
             throw new ServiceException("验证码错误");
         }
-        String adminUser = "";
-        session.setAttribute(LONGIN_USER, adminUser);
+        Subject subject = ShiroKit.getSubject();
+        UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(userName, password);
+        subject.login(usernamePasswordToken);
         return CommonResponse.success("登录成功");
     }
 

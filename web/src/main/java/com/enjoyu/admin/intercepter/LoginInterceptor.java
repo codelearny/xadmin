@@ -18,14 +18,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object o) throws Exception {
-        if (o instanceof ResourceHttpRequestHandler) {
-            return true;
-        } else if (null == request.getSession().getAttribute(LONGIN_USER)) {
-            response.sendRedirect(request.getContextPath() + "/login");
-            return false;
-        } else {
-            return true;
-        }
+        return true;
     }
 
     @Override
