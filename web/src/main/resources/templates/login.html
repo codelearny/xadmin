@@ -3,8 +3,8 @@
 <head>
     <th:block th:include="admin/header :: fragment-header"/>
     <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-    <link rel="stylesheet" href="plugins/toastr/toastr.min.css">
+    <link rel="stylesheet" th:href="@{/plugins/icheck-bootstrap/icheck-bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/plugins/toastr/toastr.min.css}">
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
@@ -38,14 +38,14 @@
                         <input type="text" name="verifyCode" class="form-control" placeholder="请输入验证码" required>
                     </div>
                     <div class="col-6">
-                        <img alt="单击图片刷新！" class="pointer" src="captcha"
+                        <img alt="单击图片刷新！" class="pointer" th:src="@{/captcha}"
                              onclick="this.src=_ctx + '/captcha?d='+new Date()*1" >
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-4"></div>
                     <div class="col-4">
-                        <a href="register.html" class="btn btn-primary btn-block">Register</a>
+                        <a th:href="@{/register.html}" class="btn btn-primary btn-block">Register</a>
                     </div>
                     <!-- /.col -->
                     <div class="col-4">
@@ -62,8 +62,8 @@
 <!-- /.login-box -->
 
 <th:block th:include="admin/script :: fragment-script"/>
-<script src="plugins/jquery-validate/jquery.validate.min.js"></script>
-<script src="plugins/toastr/toastr.min.js"></script>
-<script src="js/login.js"></script>
+<script th:src="@{/plugins/jquery-validate/jquery.validate.min.js}"></script>
+<script th:src="@{/plugins/toastr/toastr.min.js}"></script>
+<script th:src="@{/js/login.js}"></script>
 </body>
 </html>

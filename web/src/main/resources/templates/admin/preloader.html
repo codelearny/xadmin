@@ -1,7 +1,5 @@
 <html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <!--preloader-->
-<div th:fragment="fragment-preloader">
-    <div class="preloader flex-column justify-content-center align-items-center">
-        <img class="animation__wobble" src="dist/img/dist-logo.png" alt="logo" height="160" width="160">
-    </div>
+<div class="preloader flex-column justify-content-center align-items-center" th:fragment="fragment-preloader">
+    <img class="animation__wobble" th:src="@{/dist/img/dist-logo.png}" alt="logo" height="160" width="160">
 </div>

@@ -1,7 +1,6 @@
-package com.enjoyu.admin.controller;
+package com.enjoyu.admin.common;
 
-import com.enjoyu.admin.common.CommonResponse;
-import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.IOUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,7 +48,7 @@ public class UploadController {
         response.setHeader("Content-Disposition", "attachment;filename=" + fileName);
         try (FileInputStream fileInputStream = new FileInputStream(file);
              ServletOutputStream outputStream = response.getOutputStream()) {
-            IOUtils.copy(fileInputStream, outputStream);
+            IOUtil.copy(fileInputStream, outputStream);
             outputStream.flush();
         }
     }

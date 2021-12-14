@@ -8,9 +8,9 @@ import org.springframework.boot.context.metrics.buffering.BufferingApplicationSt
  * @author enjoyu
  */
 @SpringBootApplication
-public class Application {
+public class TestApplication {
     public static void main(String[] args) {
-        new SpringApplicationBuilder(Application.class)
+        new SpringApplicationBuilder(TestApplication.class)
                 //Application Startup tracking
                 //$ java -XX:StartFlightRecording:filename=recording.jfr,duration=10s -jar demo.jar
                 .applicationStartup(new BufferingApplicationStartup(2048))
