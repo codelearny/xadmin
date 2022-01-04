@@ -38,6 +38,10 @@ public final class CommonResponse<T> {
         return new CommonResponse<>(Status.OK, msg, body);
     }
 
+    public static <E> CommonResponse<E> data(E data) {
+        return success("success", data);
+    }
+
     public static <E> CommonResponse<E> error(Throwable e) {
         return new CommonResponse<>(Status.ERROR, e.getMessage(), null);
     }

@@ -19,7 +19,7 @@ public class SingleControllerTest {
 
     @BeforeEach
     void setup() {
-        this.mockMvc = MockMvcBuilders.standaloneSetup(new AdminController()).apply(sharedHttpSession()).build();
+        this.mockMvc = MockMvcBuilders.standaloneSetup(new IndexController()).apply(sharedHttpSession()).build();
     }
 
     @Test

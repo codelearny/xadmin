@@ -6,19 +6,24 @@ spring:
     username: root
     password: root
 
-  hikari:
-    pool-name: hikari-pool-
-    minimum-idle: 4
-    maximum-pool-size: 8
-    connection-timeout: 30000
-    connection-test-query: SELECT 1
+    hikari:
+      auto-commit: false
+      pool-name: hikari-pool-
+      minimum-idle: 4
+      maximum-pool-size: 8
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
 
-  thymleaf:
+  thymeleaf:
     cache: false
 
   devtools:
     restart:
       enabled: true
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 file:
   upload:

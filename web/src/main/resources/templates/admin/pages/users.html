@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="admin/header :: fragment-header"/>
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" th:href="@{/plugins/icheck-bootstrap/icheck-bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/plugins/toastr/toastr.min.css}">
+    <!-- jsgrid -->
+    <link rel="stylesheet" th:href="@{/plugins/jsgrid/jsgrid.min.css}">
+    <link rel="stylesheet" th:href="@{/plugins/jsgrid/jsgrid-theme.min.css}">
+    <style>
+        .search-content {
+            width: 100%;
+            margin: 8px;
+        }
+    </style>
+</head>
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<div class="wrapper">
+
+    <!-- Preloader -->
+    <div th:replace="admin/preloader :: fragment-preloader"></div>
+
+    <!-- Navbar -->
+    <div th:replace="admin/navbar :: fragment-navbar"></div>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <div th:replace="admin/sidebar :: fragment-sidebar"></div>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">用户管理</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">user</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <!-- Horizontal Form -->
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">Horizontal Form</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- search-content -->
+                    <form id="searchForm" class="form-inline">
+                        <div class="search-content row">
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="username" class="col-sm-3 col-form-label">用户名</label>
+                                    <input type="text" class="form-control col-sm-9" id="username" name="username">
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="nickname" class="col-sm-3 col-form-label">昵称</label>
+                                    <input type="text" class="form-control col-sm-9" id="nickname" name="nickname">
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="status" class="col-sm-3 col-form-label">状态</label>
+                                    <select class="form-control col-sm-9" id="status" name="status">
+                                        <option value="" selected>请选择</option>
+                                        <option value="0">禁用</option>
+                                        <option value="1">正常</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-3 btn-group text-right">
+                                <button type="button" class="btn btn-primary" onclick="search()">搜索</button>
+                                <button type="button" class="btn btn-info"
+                                        onclick="$('#searchForm')[0].reset();">重置
+                                </button>
+                            </div>
+
+                        </div>
+                    </form>
+                    <!-- form start -->
+                    <div class="card-body jsgrid">
+                        <div id="jsGrid" class="jsgrid-table"></div>
+                    </div>
+
+                </div>
+                <!-- /.card -->
+            </div><!--/. container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Control Sidebar -->
+    <div th:replace="admin/sidebar :: fragment-control"></div>
+    <!-- /.control-sidebar -->
+
+    <!-- Main Footer -->
+    <div th:replace="admin/footer :: fragment-footer"></div>
+</div>
+<!-- ./wrapper -->
+
+<th:block th:replace="admin/script :: fragment-script"/>
+
+<!-- jsgrid -->
+<script th:src="@{/plugins/jsgrid/jsgrid.min.js}"></script>
+<script th:src="@{/plugins/jsgrid/i18n/jsgrid-zh-cn.js}"></script>
+<script th:src="@{/plugins/jsgrid/demos/db.js}"></script>
+<!-- toastr -->
+<script th:src="@{/plugins/toastr/toastr.min.js}"></script>
+
+<script type="text/javascript">
+    const statuses = [
+        {desc: "启用", st: true},
+        {desc: "禁用", st: false},
+    ];
+    const loadData = function (e) {
+        console.log(e);
+        const d = $.Deferred();
+        $.get("user/page", $('#searchForm').serialize()).done(function (e) {
+            if (e.status === 0) {
+                const pageData = {data: e.data.records, itemsCount: e.data.total};
+                d.resolve(pageData);
+            } else {
+                d.reject(e.msg);
+            }
+        }).fail(function (e) {
+            toastr.error("请求失败");
+        })
+        return d.promise();
+    };
+    const search = function () {
+        $("#jsGrid").jsGrid("loadData");
+    }
+    $(function () {
+        $("#jsGrid").jsGrid({
+            width: "100%",
+            height: "500px",
+            filtering: true,
+            inserting: false,
+            editing: false,
+            sorting: true,
+            paging: true,
+            pageLoading: true,
+            pageSize: 8,
+            autoload: false,
+            deleteConfirm: "确认需要删除数据？",
+            loadMessage: "正在装载数据，请稍候......",
+            controller: {
+                loadData: loadData
+            },
+            fields: [
+                {name: "id", type: "text", visible: false},
+                {name: "username", type: "number", title: "登录名", width: 150,},
+                {name: "nickname", type: "text", title: "昵称", width: 150},
+                {name: "phone", type: "text", title: "手机号", width: 150},
+                {name: "mail", type: "text", title: "邮箱", width: 200},
+                {name: "status", type: "select", title: "状态", items: statuses, valueField: "st", textField: "desc"},
+                {name: "createTime", type: "date", title: "创建时间",},
+                {
+                    type: "control",
+                    modeSwitchButton: true,
+                    editButton: true,
+                    width: 100,
+                }
+            ]
+        });
+    });
+</script>
+
+</body>
+</html>

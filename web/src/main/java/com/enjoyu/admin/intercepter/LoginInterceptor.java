@@ -13,7 +13,6 @@ import static com.enjoyu.admin.common.Constants.LONGIN_USER;
 /**
  * 登录拦截器
  */
-@Component
 public class LoginInterceptor implements HandlerInterceptor {
 
     @Override

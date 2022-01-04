@@ -62,6 +62,11 @@ spring:
         min-idle: 0
         max-idle: 8
         max-wait: -1
+      cluster:
+        refresh:
+          adaptive: true
+          dynamic-refresh-sources: true
+          period: 30000
 
   kafka:
     bootstrap-servers: localhost:9092

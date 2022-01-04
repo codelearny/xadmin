@@ -13,12 +13,12 @@
         <div class="card-header text-center">
             <h1><b>X</b>admin</h1>
         </div>
-        <div class="card-body">
+        <div class="card-body login-card-body">
             <p class="login-box-msg">Sign in</p>
 
             <form id="login" method="post">
                 <div class="input-group mb-3">
-                    <input type="text" name="userName" class="form-control" placeholder="请输入账号" required>
+                    <input type="text" name="username" class="form-control" placeholder="请输入账号" required>
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-user"></span>
@@ -38,22 +38,26 @@
                         <input type="text" name="verifyCode" class="form-control" placeholder="请输入验证码" required>
                     </div>
                     <div class="col-6">
-                        <img alt="单击图片刷新！" class="pointer" th:src="@{/captcha}"
-                             onclick="this.src=_ctx + '/captcha?d='+new Date()*1" >
+                        <img id="capt" alt="单击图片刷新！" class="pointer" th:src="@{/captcha}"
+                             onclick="this.src=_ctx + '/captcha?d='+new Date()*1">
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-4"></div>
-                    <div class="col-4">
-                        <a th:href="@{/register.html}" class="btn btn-primary btn-block">Register</a>
+                    <div class="col-8">
+                        <div class="icheck-primary">
+                            <input type="checkbox" id="remember">
+                            <label for="remember">Remember Me</label>
+                        </div>
                     </div>
-                    <!-- /.col -->
                     <div class="col-4">
                         <button type="submit" class="btn btn-primary btn-block">Sign In</button>
                     </div>
-                    <!-- /.col -->
                 </div>
             </form>
+
+            <p class="mb-0">
+                <a th:href="@{/register}" class="text-center">Register</a>
+            </p>
         </div>
         <!-- /.card-body -->
     </div>
@@ -61,9 +65,42 @@
 </div>
 <!-- /.login-box -->
 
-<th:block th:include="admin/script :: fragment-script"/>
-<script th:src="@{/plugins/jquery-validate/jquery.validate.min.js}"></script>
+<!-- jQuery -->
+<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
+<!-- jQuery validate -->
+<script th:src="@{/plugins/jquery-validation/jquery.validate.min.js}"></script>
+<script th:src="@{/plugins/jquery-validation/additional-methods.min.js}"></script>
+<!-- toastr -->
 <script th:src="@{/plugins/toastr/toastr.min.js}"></script>
-<script th:src="@{/js/login.js}"></script>
+
+<script type="text/javascript">
+    $(function () {
+        // login Form Valid
+        $("#login").validate({
+            focusInvalid: true,
+            submitHandler: function (form) {
+                $.post("login", $("#login").serialize(), function (data, status) {
+                    if (data.status === 0) {
+                        window.location.href = _ctx + 'index';
+                    } else {
+                        toastr.error(data.msg);
+                        $('#capt').click()
+                    }
+                });
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.input-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+    });
+</script>
 </body>
 </html>

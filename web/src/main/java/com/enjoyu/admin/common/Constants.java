@@ -6,4 +6,6 @@ package com.enjoyu.admin.common;
 public class Constants {
 
     public static final String LONGIN_USER = "loginUser";
+
+
 }

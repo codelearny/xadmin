@@ -38,13 +38,7 @@
             <dependency>
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct</artifactId>
-                <version>${org.mapstruct.version}</version>
-            </dependency>
-            <!--lombok-->
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>${lombok.version}</version>
+                <version>${mapstruct.version}</version>
             </dependency>
 
             <!-- modules -->
@@ -79,8 +73,7 @@
         <docker.host>http://127.0.0.1:2375</docker.host>
         <docker.maven.plugin.version>1.2.2</docker.maven.plugin.version>
         <xaVersion>0.0.1-SNAPSHOT</xaVersion>
-        <lombok.version>1.18.18</lombok.version>
-        <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
+        <mapstruct.version>1.5.0.Beta2</mapstruct.version>
         <spring-boot.version>2.5.5</spring-boot.version>
     </properties>
 
@@ -88,10 +81,6 @@
     <build>
         <pluginManagement>
             <plugins>
-                <plugin>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-maven-plugin</artifactId>
-                </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
@@ -132,7 +121,7 @@
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
             <distribution>repo</distribution>
             <comments>A business-friendly OSS license</comments>
         </license>
@@ -210,7 +199,7 @@
         <repository>
             <id>public</id>
             <name>aliyun nexus</name>
-            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <url>https://maven.aliyun.com/nexus/content/groups/public/</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -221,7 +210,7 @@
         <pluginRepository>
             <id>public</id>
             <name>aliyun nexus</name>
-            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <url>https://maven.aliyun.com/nexus/content/groups/public/</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
