@@ -1,35 +1,27 @@
 package com.enjoyu.admin.repository;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.enjoyu.admin.dao.SysUserMapper;
-import com.enjoyu.admin.dao.entity.SysUser;
+import com.enjoyu.admin.components.mbp.entity.User;
+import com.enjoyu.admin.components.mbp.service.IUserService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
-public class SysUserRepository extends ServiceImpl<SysUserMapper, SysUser> {
+@AllArgsConstructor
+public class SysUserRepository {
+    IUserService userService;
 
-    public void deleteUser(Long userId) {
-        UpdateWrapper<SysUser> wrapper = new UpdateWrapper<>();
-        wrapper.set("state", 2);
-        wrapper.eq("id", userId);
-        update(wrapper);
+    public User user(String userName) {
+        return userService.lambdaQuery().eq(User::getUsername, userName).one();
     }
 
-    public SysUser getByName(String username) {
-        QueryWrapper<SysUser> wrapper = new QueryWrapper<>();
-        wrapper.eq("user_name", username);
-        return getOne(wrapper);
+    public void deleteByUserId(Integer userId) {
+        userService.lambdaUpdate().eq(User::getId, userId).remove();
     }
 
-    public Long addUser(SysUser sysUser) {
-        this.save(sysUser);
-        return sysUser.getId();
-    }
-
-    public void updateUser(SysUser sysUser) {
-        updateById(sysUser);
+    public void deleteByUserIds(List<Long> userIds) {
+        userService.lambdaUpdate().in(User::getId, userIds).remove();
     }
 
 }

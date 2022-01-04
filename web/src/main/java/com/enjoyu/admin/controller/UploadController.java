@@ -1,5 +1,6 @@
-package com.enjoyu.admin.common;
+package com.enjoyu.admin.controller;
 
+import com.enjoyu.admin.common.CommonResponse;
 import org.apache.commons.io.IOUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;

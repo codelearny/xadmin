@@ -1,30 +1,33 @@
 package com.enjoyu.admin.repository;
 
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.enjoyu.admin.dao.SysRoleMapper;
-import com.enjoyu.admin.dao.entity.SysRole;
+import com.enjoyu.admin.components.mbp.entity.Role;
+import com.enjoyu.admin.components.mbp.entity.UserRole;
+import com.enjoyu.admin.components.mbp.service.IRoleService;
+import com.enjoyu.admin.components.mbp.service.IUserRoleService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
-public class SysRoleRepository extends ServiceImpl<SysRoleMapper, SysRole> {
+public class SysRoleRepository {
+    IRoleService roleService;
+    IUserRoleService userRoleService;
 
-    SysUserRoleRepository sysUserRoleRepository;
-
-    public List<SysRole> allRoles() {
-        return list();
+    public List<Role> allRoles() {
+        return roleService.list();
     }
 
-    public List<SysRole> getRolesByUserId(Long userId) {
-        List<Long> roleIds = sysUserRoleRepository.getRoleIdsByUserId(userId);
-        if (roleIds.isEmpty()) {
+    public List<Role> getRolesByUserId(Integer userId) {
+        List<UserRole> userRoles = userRoleService.lambdaQuery().eq(UserRole::getUserId, userId).list();
+        if (userRoles.isEmpty()) {
             return Collections.emptyList();
         }
-        return listByIds(roleIds);
+        List<Integer> collect = userRoles.stream().map(UserRole::getRoleId).collect(Collectors.toList());
+        return roleService.listByIds(collect);
     }
 
 }
