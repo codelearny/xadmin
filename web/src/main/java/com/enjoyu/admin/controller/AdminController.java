@@ -1,62 +1,43 @@
 package com.enjoyu.admin.controller;
 
 import com.enjoyu.admin.common.CommonResponse;
-import com.enjoyu.admin.common.exception.ServiceException;
-import com.enjoyu.admin.shiro.ShiroKit;
-import com.wf.captcha.ArithmeticCaptcha;
-import com.wf.captcha.utils.CaptchaUtil;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.subject.Subject;
+import com.enjoyu.admin.components.mbp.entity.User;
+import com.enjoyu.admin.components.mbp.service.IUserService;
+import com.enjoyu.admin.components.shiro.ShiroUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.validation.constraints.NotBlank;
-import java.io.IOException;
-
-import static com.enjoyu.admin.common.Constants.LONGIN_USER;
-
 @Controller
+@RequestMapping("/admin")
 public class AdminController {
 
-    @GetMapping({"/login"})
-    public String login() {
-        return "login";
-    }
-
-    @GetMapping({"", "/", "/index", "/index.html"})
-    public String index(HttpServletRequest request) {
-        request.setAttribute("path", "index");
-        return "index";
+    @GetMapping("/pswReset")
+    public String page(Model model) {
+        User user = ShiroUtil.currentUser();
+        model.addAttribute("user", user);
+        return "admin/pages/pswReset";
     }
 
     @ResponseBody
-    @PostMapping(value = "/login")
-    public CommonResponse<Object> login(@NotBlank String userName, @NotBlank String password, @NotBlank String verifyCode, HttpServletRequest request, HttpSession session) {
-        if (!CaptchaUtil.ver(verifyCode, request)) {
-            throw new ServiceException("验证码错误");
+    @PostMapping("/pswReset")
+    public CommonResponse<String> passwordChange(String oldPassword, String newPassword) {
+        User user = ShiroUtil.currentUser();
+        String salt = user.getSalt();
+        String password = user.getPassword();
+        if (!ShiroUtil.matchEncrypt(oldPassword, salt, password)) {
+            return CommonResponse.error("密码错误");
         }
-        Subject subject = ShiroKit.getSubject();
-        UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(userName, password);
-        subject.login(usernamePasswordToken);
-        return CommonResponse.success("登录成功");
+        String encrypt = ShiroUtil.encrypt(newPassword, salt);
+        user.setPassword(encrypt);
+        userService.updateById(user);
+        return CommonResponse.success("密码修改成功");
     }
 
-
-    @GetMapping("/captcha")
-    public void captcha(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        ArithmeticCaptcha captcha = new ArithmeticCaptcha(130, 48, 2);
-        CaptchaUtil.out(captcha, request, response);
-    }
-
-
-    @GetMapping("/logout")
-    public String logout(HttpSession session) {
-        session.removeAttribute(LONGIN_USER);
-        return "redirect:/login";
-    }
+    @Autowired
+    IUserService userService;
 }
