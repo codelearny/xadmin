@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Data
 public class UserReq {
 
-    private Integer id;
+    private Long id;
     /**
      * 用户名
      */

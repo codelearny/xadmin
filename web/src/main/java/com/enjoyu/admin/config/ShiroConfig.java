@@ -59,6 +59,7 @@ public class ShiroConfig {
         chainDefinition.addPathDefinition("/login", "anon");
         chainDefinition.addPathDefinition("/register", "anon");
         chainDefinition.addPathDefinition("/captcha", "anon");
+        chainDefinition.addPathDefinition("/test/**", "anon");
 
         chainDefinition.addPathDefinition("/logout", "logout");
 

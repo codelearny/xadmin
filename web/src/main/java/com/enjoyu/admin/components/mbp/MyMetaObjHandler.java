@@ -11,14 +11,14 @@ public class MyMetaObjHandler implements MetaObjectHandler {
     @Override
     public void insertFill(MetaObject metaObject) {
         User principal = ShiroUtil.currentUser();
-        strictInsertFill(metaObject, "createUser", Integer.class, principal.getId());
+        strictInsertFill(metaObject, "createUser", Long.class, principal.getId());
         strictInsertFill(metaObject, "createTime", LocalDateTime.class, LocalDateTime.now());
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
         User principal = ShiroUtil.currentUser();
-        strictUpdateFill(metaObject, "updateUser", Integer.class, principal.getId());
+        strictUpdateFill(metaObject, "updateUser", Long.class, principal.getId());
         strictUpdateFill(metaObject, "updateTime", LocalDateTime.class, LocalDateTime.now());
     }
 }

@@ -21,7 +21,7 @@ public class SysRoleRepository {
         return roleService.list();
     }
 
-    public List<Role> getRolesByUserId(Integer userId) {
+    public List<Role> getRolesByUserId(Long userId) {
         List<UserRole> userRoles = userRoleService.lambdaQuery().eq(UserRole::getUserId, userId).list();
         if (userRoles.isEmpty()) {
             return Collections.emptyList();
