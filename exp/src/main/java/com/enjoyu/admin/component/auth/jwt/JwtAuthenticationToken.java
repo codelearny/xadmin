@@ -12,21 +12,19 @@ import java.util.Date;
 public class JwtAuthenticationToken extends AbstractAuthenticationToken {
 
     private UserDetails principal;
-    private String token;
+    private final String token;
     private Claims claims;
 
     public JwtAuthenticationToken(String token) {
         super(null);
         this.token = token;
-        this.claims = JwtUtils.verify(token);
-        this.setAuthenticated(false);
     }
 
-    public JwtAuthenticationToken(UserDetails principal, JwtAuthenticationToken token, Collection<? extends GrantedAuthority> authorities) {
+    private JwtAuthenticationToken(JwtAuthenticationToken token, UserDetails principal, Collection<? extends GrantedAuthority> authorities) {
         super(authorities);
         this.principal = principal;
-        this.token = (String) token.getCredentials();
-        this.claims = token.getClaims();
+        this.token = token.token;
+        this.claims = token.claims;
         this.setAuthenticated(true);
     }
 
@@ -55,5 +53,19 @@ public class JwtAuthenticationToken extends AbstractAuthenticationToken {
 
     public Date getIat() {
         return claims.getIssuedAt();
+    }
+
+    /**
+     * 验签
+     */
+    public void verify() {
+        claims = JwtUtils.verify(token);
+    }
+
+    /**
+     * 认证通过
+     */
+    public JwtAuthenticationToken authenticated(UserDetails principal) {
+        return new JwtAuthenticationToken(this, principal, principal.getAuthorities());
     }
 }

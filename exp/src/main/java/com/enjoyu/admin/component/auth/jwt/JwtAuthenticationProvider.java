@@ -1,6 +1,7 @@
 package com.enjoyu.admin.component.auth.jwt;
 
 
+import com.enjoyu.admin.common.utils.DateUtil;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -8,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.authentication.www.NonceExpiredException;
 
 /**
  * 参考{@link DaoAuthenticationProvider}
@@ -25,12 +27,20 @@ public class JwtAuthenticationProvider implements AuthenticationProvider {
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         JwtAuthenticationToken token = (JwtAuthenticationToken) authentication;
+        try {
+            token.verify();
+        } catch (Exception e) {
+            throw new BadCredentialsException("Bad JWT credentials", e);
+        }
+        if (token.getExp().before(DateUtil.now())) {
+            throw new NonceExpiredException("Token expires");
+        }
         String subject = token.getSubject();
         UserDetails user = userService.loadUserByUsername(subject);
         if (user == null) {
-            throw new BadCredentialsException("Bad JWT credentials");
+            throw new NonceExpiredException("Token expires");
         }
-        return new JwtAuthenticationToken(user, token, user.getAuthorities());
+        return token.authenticated(user);
     }
 
     @Override

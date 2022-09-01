@@ -1,4 +1,4 @@
-package com.enjoyu.admin.component.auth;
+package com.enjoyu.admin.component.auth.service;
 
 import com.enjoyu.admin.component.jpa.dao.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

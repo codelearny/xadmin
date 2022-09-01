@@ -1,4 +1,4 @@
-package com.enjoyu.admin.config;
+package com.enjoyu.admin.component.mybatis;
 
 
 import org.mybatis.spring.annotation.MapperScan;

@@ -55,10 +55,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
         if (failed == null) {
             successfulAuthentication(request, response, authToken);
+            chain.doFilter(request, response);
         } else {
             unsuccessfulAuthentication(request, response, failed);
         }
-        chain.doFilter(request, response);
     }
 
     protected void successfulAuthentication(HttpServletRequest request,

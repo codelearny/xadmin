@@ -1,4 +1,4 @@
-package com.enjoyu.admin.component.auth;
+package com.enjoyu.admin.component.auth.rest;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;

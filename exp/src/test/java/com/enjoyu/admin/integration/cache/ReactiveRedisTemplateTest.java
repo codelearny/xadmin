@@ -1,6 +1,6 @@
 package com.enjoyu.admin.integration.cache;
 
-import com.enjoyu.admin.config.RedisCacheConfig;
+import com.enjoyu.admin.component.cache.RedisCacheConfig;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;

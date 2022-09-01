@@ -1,4 +1,4 @@
-package com.enjoyu.admin.component.auth;
+package com.enjoyu.admin.component.auth.rest;
 
 
 import com.enjoyu.admin.web.vo.CommonResponse;

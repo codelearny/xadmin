@@ -1,15 +1,16 @@
-package com.enjoyu.admin.config;
+package com.enjoyu.admin.component.auth;
 
-import com.enjoyu.admin.component.auth.RestAccessDeniedHandler;
-import com.enjoyu.admin.component.auth.RestAuthenticationEntryPoint;
-import com.enjoyu.admin.component.auth.RestLogoutSuccessHandler;
-import com.enjoyu.admin.component.auth.UserDetailsServiceImpl;
 import com.enjoyu.admin.component.auth.jwt.JwtAuthenticationProvider;
+import com.enjoyu.admin.component.auth.jwt.JwtClearLogoutHandler;
 import com.enjoyu.admin.component.auth.jwt.JwtRefreshSuccessHandler;
 import com.enjoyu.admin.component.auth.jwt.JwtTokenFilterConfigurer;
 import com.enjoyu.admin.component.auth.login.RestLoginConfigurer;
 import com.enjoyu.admin.component.auth.login.RestLoginFailureHandler;
 import com.enjoyu.admin.component.auth.login.RestLoginSuccessHandler;
+import com.enjoyu.admin.component.auth.rest.RestAccessDeniedHandler;
+import com.enjoyu.admin.component.auth.rest.RestAuthenticationEntryPoint;
+import com.enjoyu.admin.component.auth.rest.RestLogoutSuccessHandler;
+import com.enjoyu.admin.component.auth.service.UserDetailsServiceImpl;
 import com.enjoyu.admin.utils.JwtUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +28,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -79,7 +81,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                 .antMatchers(HttpMethod.OPTIONS).permitAll()
                                 .anyRequest().authenticated()
                 )
-                .logout().logoutSuccessHandler(restLogoutSuccessHandler()).and()
+                .logout().addLogoutHandler(jwtClearHandler()).logoutSuccessHandler(restLogoutSuccessHandler()).and()
                 //添加自定义未授权和未登录结果返回
                 .exceptionHandling().accessDeniedHandler(restAccessDeniedHandler()).authenticationEntryPoint(restAuthenticationEntryPoint())
         ;
@@ -97,6 +99,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         configuration.addExposedHeader(JwtUtils.JWT_HTTP_HEADER);
         source.registerCorsConfiguration("/**", configuration);
         return source;
+    }
+
+    @Bean
+    LogoutHandler jwtClearHandler() {
+        return new JwtClearLogoutHandler();
     }
 
     @Bean

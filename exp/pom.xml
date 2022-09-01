@@ -15,6 +15,7 @@
         <dependency>
             <groupId>com.enjoyu</groupId>
             <artifactId>common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <!-- Tomcat and Spring MVC -->
         <dependency>
@@ -119,6 +120,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
                 <executions>
                     <execution>
                         <goals>

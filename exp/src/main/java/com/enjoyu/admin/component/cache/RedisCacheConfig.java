@@ -1,4 +1,4 @@
-package com.enjoyu.admin.config;
+package com.enjoyu.admin.component.cache;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

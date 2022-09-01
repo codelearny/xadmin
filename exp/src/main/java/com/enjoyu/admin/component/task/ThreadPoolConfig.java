@@ -1,4 +1,4 @@
-package com.enjoyu.admin.config;
+package com.enjoyu.admin.component.task;
 
 import org.springframework.boot.task.TaskExecutorCustomizer;
 import org.springframework.boot.task.TaskSchedulerCustomizer;

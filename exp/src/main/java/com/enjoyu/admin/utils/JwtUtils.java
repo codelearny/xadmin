@@ -6,9 +6,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.impl.TextCodec;
 
-import java.util.Date;
-
-import static java.time.temporal.ChronoUnit.MINUTES;
+import static java.time.temporal.ChronoUnit.SECONDS;
 
 /**
  * 使用对称加密算法+固定密钥的jwt工具类
@@ -19,6 +17,14 @@ public class JwtUtils {
 
     public static final String JWT_HTTP_HEADER = "Authorization";
     public static final String JWT_TOKEN_HEADER = "Bearer ";
+    /**
+     * 刷新时间间隔（秒）
+     */
+    public static final int REFRESH_INTERVAL = 300;
+    /**
+     * 失效时间间隔（秒）
+     */
+    public static final int EXPIRE_INTERVAL = 600;
 
     private static final SignatureAlgorithm ALG = SignatureAlgorithm.HS512;
     private static final String SEC = TextCodec.BASE64.encode("%^&YT$RF)GJN@#IN&N@OIN$JN$&#ON");
@@ -26,8 +32,8 @@ public class JwtUtils {
     public static String sign(String username) {
         return Jwts.builder()
                 .setSubject(username)
-                .setIssuedAt(new Date())
-                .setExpiration(DateUtil.hourglass(MINUTES, 10))
+                .setIssuedAt(DateUtil.now())
+                .setExpiration(DateUtil.hourglass(SECONDS, EXPIRE_INTERVAL))
                 .signWith(ALG, SEC)
                 .compact();
     }
