@@ -3,8 +3,8 @@ package com.enjoyu.admin.component.kafka.listener;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.springframework.kafka.annotation.KafkaListener;
 
-import static com.enjoyu.admin.config.KafkaConfig.GROUP_T_1;
-import static com.enjoyu.admin.config.KafkaConfig.TOPIC_T_1;
+import static com.enjoyu.admin.component.kafka.KafkaConfig.GROUP_T_1;
+import static com.enjoyu.admin.component.kafka.KafkaConfig.TOPIC_T_1;
 
 
 public class MethodListener {

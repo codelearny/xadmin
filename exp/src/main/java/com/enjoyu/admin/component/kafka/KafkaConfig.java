@@ -1,4 +1,4 @@
-package com.enjoyu.admin.config;
+package com.enjoyu.admin.component.kafka;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.admin.NewTopic;
@@ -58,7 +58,7 @@ public class KafkaConfig {
         return (message, e, consumer) -> {
             log.info("message:{}", message.getPayload());
             log.error("exception while listening", e);
-            return null;
+            return message;
         };
     }
 }

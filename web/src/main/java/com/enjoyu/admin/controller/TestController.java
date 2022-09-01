@@ -20,7 +20,6 @@ public class TestController {
     @PostMapping(value = "xml", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
     @ResponseBody
     public XmlVo xml(@RequestBody XmlReq req) {
-        System.out.println(req);
         XmlVo vo = new XmlVo();
         vo.setDesc("test");
         List<UserVo> vos = Lists.newArrayList();

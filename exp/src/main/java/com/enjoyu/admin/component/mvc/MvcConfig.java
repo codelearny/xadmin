@@ -1,4 +1,4 @@
-package com.enjoyu.admin.config;
+package com.enjoyu.admin.component.mvc;
 
 import com.enjoyu.admin.component.mvc.LogIntercepter;
 import com.fasterxml.jackson.databind.ObjectMapper;
