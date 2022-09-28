@@ -51,6 +51,9 @@ public final class CommonResponse<T> {
     }
 
     enum Status {
+        /**
+         * 状态枚举
+         */
         OK(0), ERROR(1);
 
         Status(int code) {

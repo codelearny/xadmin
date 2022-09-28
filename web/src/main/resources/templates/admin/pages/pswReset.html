@@ -116,7 +116,7 @@
         $("#pswResetForm").validate({
             focusInvalid: true,
             submitHandler: function (form) {
-                $.post("pswReset", $("#pswResetForm").serialize(), function (result) {
+                $.post("admin/pswReset", $("#pswResetForm").serialize(), function (result) {
                     if (result.status === 0) {
                         toastr.success(result.msg);
                     } else {

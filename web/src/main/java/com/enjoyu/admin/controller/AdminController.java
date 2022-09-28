@@ -5,7 +5,6 @@ import com.enjoyu.admin.components.mbp.entity.User;
 import com.enjoyu.admin.components.mbp.service.IUserService;
 import com.enjoyu.admin.components.shiro.ShiroUtil;
 import com.enjoyu.admin.controller.vo.UserVo;
-import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,11 +39,11 @@ public class AdminController {
         return CommonResponse.success("密码修改成功");
     }
 
-    @RequiresRoles("admin")
+    @ResponseBody
     @GetMapping("user")
     public CommonResponse<UserVo> userInfo() {
         User user = ShiroUtil.currentUser();
-        UserVo userVo = new UserVo();
+        UserVo userVo = UserVo.from(user);
         return CommonResponse.success("", userVo);
     }
 
