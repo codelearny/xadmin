@@ -35,4 +35,8 @@ public abstract class DigestUtil {
         return md5.digest(message.getBytes(StandardCharsets.UTF_8));
     }
 
+    public static MessageDigest md5() throws NoSuchAlgorithmException {
+        return MessageDigest.getInstance(MD5);
+    }
+
 }

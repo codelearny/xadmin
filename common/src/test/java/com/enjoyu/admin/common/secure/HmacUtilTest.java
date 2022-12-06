@@ -15,7 +15,7 @@ public class HmacUtilTest {
         String message = "山暝听猿愁，沧江急夜流。\n风鸣两岸叶，月照一孤舟。\n建德非吾土，维扬忆旧游。\n还将两行泪，遥寄海西头。";
         System.out.printf("message %n%s%n", message);
         byte[] hash = HmacUtil.hash("abcdefg", message, HmacUtil.HMAC_MD5);
-        System.out.println(EncodeUtil.bytesToHexString(hash));
+        System.out.println(EncodeUtil.bytes2Hex(hash));
     }
 
     @Test
@@ -23,7 +23,7 @@ public class HmacUtilTest {
         String message = "荒戍落黄叶，浩然离故关。\n高风汉阳渡，初日郢门山。\n江上几人在，天涯孤棹还。\n何当重相见，樽酒慰离颜。";
         System.out.printf("message %n%s%n", message);
         byte[] hash = HmacUtil.hash(HmacUtil.genKey(HmacUtil.HMAC_SHA256), message.getBytes(), HmacUtil.HMAC_SHA256);
-        System.out.println(EncodeUtil.bytesToHexString(hash));
+        System.out.println(EncodeUtil.bytes2Hex(hash));
     }
 
     @Test
@@ -31,7 +31,7 @@ public class HmacUtilTest {
         String message = "海上生明月，天涯共此时。\n情人怨遥夜，竟夕起相思。\n灭烛怜光满，披衣觉露滋。\n不堪盈手赠，还寝梦佳期。";
         System.out.printf("message %n%s%n", message);
         byte[] hash = HmacUtil.hash(HmacUtil.HMAC_SHA512, message, HmacUtil.HMAC_SHA512);
-        System.out.println(EncodeUtil.bytesToHexString(hash));
+        System.out.println(EncodeUtil.bytes2Hex(hash));
     }
 
     @Test

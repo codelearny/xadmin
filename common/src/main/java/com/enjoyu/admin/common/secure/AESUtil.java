@@ -9,7 +9,6 @@ import javax.crypto.spec.SecretKeySpec;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 
 /**
  * 高级加密标准（英语：Advanced Encryption Standard，缩写：AES），是一种区块加密标准。
@@ -21,7 +20,8 @@ import java.security.SecureRandom;
  * @author enjoyu
  */
 public abstract class AESUtil {
-    private static final int BITS = 256 >> 3;
+    private static final int BITS = 256;
+    private static final int BYTES = BITS >> 3;
     private static final String AES = "AES";
     private static final String AES_CBC_PKCS5_PADDING = "AES/CBC/PKCS5Padding";
 
@@ -30,7 +30,7 @@ public abstract class AESUtil {
      *
      * @param message  明文
      * @param password 密钥
-     * @param iv       iv
+     * @param iv       CBC模式需要16bytes矢量
      * @return 密文
      */
     public static byte[] encrypt(byte[] message, byte[] password, byte[] iv) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
@@ -45,6 +45,7 @@ public abstract class AESUtil {
      *
      * @param ciphertext 密文
      * @param password   密钥
+     * @param iv         CBC模式需要16bytes矢量
      * @return 明文
      */
     public static byte[] decrypt(byte[] ciphertext, byte[] password, byte[] iv) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
@@ -54,15 +55,6 @@ public abstract class AESUtil {
         return cipher.doFinal(ciphertext);
     }
 
-    /**
-     * CBC模式需要16bytes的矢量
-     *
-     * @return iv
-     */
-    public static byte[] genIV() throws NoSuchAlgorithmException {
-        SecureRandom sr = SecureRandom.getInstanceStrong();
-        return sr.generateSeed(16);
-    }
 
     /**
      * 密钥支持 128，192，256位
@@ -71,7 +63,7 @@ public abstract class AESUtil {
      * @return SecretKeySpec
      */
     private static SecretKeySpec genKey(byte[] key) {
-        byte[] arr = new byte[BITS];
+        byte[] arr = new byte[BYTES];
         System.arraycopy(key, 0, arr, 0, Math.min(key.length, arr.length));
         return new SecretKeySpec(arr, AES);
     }

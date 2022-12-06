@@ -11,7 +11,7 @@ public class AESUtilTest {
     public void test() throws Exception {
         String message = "夫子何为者，栖栖一代中。地犹鄹氏邑，宅即鲁王宫。叹凤嗟身否，伤麟怨道穷。今看两楹奠，当与梦时同。";
         String password = "123456XX";
-        byte[] iv = AESUtil.genIV();
+        byte[] iv = PBEUtil.randomSalt(16);
         System.out.printf("Message: %s%n", message);
         byte[] encrypt = AESUtil.encrypt(message.getBytes(), password.getBytes(), iv);
         System.out.printf("Encrypted: %s%n", Base64.getEncoder().encodeToString(encrypt));

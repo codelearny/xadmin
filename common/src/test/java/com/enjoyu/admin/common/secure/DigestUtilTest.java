@@ -12,21 +12,21 @@ public class DigestUtilTest {
     public void testMD5() throws NoSuchAlgorithmException {
         String message = "MD5算法";
         byte[] digest = DigestUtil.digest(message, MD5);
-        System.out.println(EncodeUtil.bytesToHexString(digest));
+        System.out.println(EncodeUtil.bytes2Hex(digest));
     }
 
     @Test
     public void testSHA1() throws NoSuchAlgorithmException {
         String message = "SHA-1算法";
         byte[] digest = DigestUtil.digest(message, SHA_1);
-        System.out.println(EncodeUtil.bytesToHexString(digest));
+        System.out.println(EncodeUtil.bytes2Hex(digest));
     }
 
     @Test
     public void testSHA256() throws NoSuchAlgorithmException {
         String message = "SHA-256算法";
         byte[] digest = DigestUtil.digest(message, SHA_256);
-        System.out.println(EncodeUtil.bytesToHexString(digest));
+        System.out.println(EncodeUtil.bytes2Hex(digest));
     }
 
 }

@@ -23,6 +23,7 @@ import java.util.Base64;
  *     <li>码表转换。</li>
  * </ol>
  * </p>
+ *
  * @author enjoyu
  */
 public abstract class EncodeUtil {
@@ -54,8 +55,26 @@ public abstract class EncodeUtil {
         return Base64.getDecoder().decode(message);
     }
 
-    public static String bytesToHexString(byte[] bytes) {
-        return new BigInteger(1, bytes).toString(16);
+    public static String bytes2Hex(byte[] bytes) {
+        String hex = new BigInteger(1, bytes).toString(16);
+        int padding = (bytes.length * 2) - hex.length();
+        if (padding > 0) {
+            return String.format("%0" + padding + "d", 0) + hex;
+        }
+
+        return hex.toUpperCase();
+    }
+
+    public static byte[] hex2Bytes(String hex) {
+        if (hex == null) {
+            return new byte[0];
+        }
+        byte[] bytes = new byte[hex.length() / 2];
+        for (int i = 0; i < bytes.length; i++) {
+            String tmp = hex.substring(i * 2, (i + 1) * 2);
+            bytes[i] = (byte) (Integer.parseInt(tmp, 16) & 0xFF);
+        }
+        return bytes;
     }
 
 }
