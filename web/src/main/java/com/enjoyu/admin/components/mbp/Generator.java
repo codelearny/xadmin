@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
 import com.baomidou.mybatisplus.generator.config.TemplateType;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.Collections;
 
@@ -26,11 +27,14 @@ public class Generator {
                 })
                 .packageConfig(builder -> {
                     builder.parent("com.enjoyu.admin.components.mbp") // 设置父包名
-                            .pathInfo(Collections.singletonMap(OutputFile.mapperXml, mapperPath)); // 设置mapperXml生成路径
+                            .pathInfo(Collections.singletonMap(OutputFile.xml, mapperPath)); // 设置mapperXml生成路径
                 })
                 .strategyConfig(builder -> {
                     builder.addInclude(tables) // 设置需要生成的表名
                             .addTablePrefix("smm_", "c_"); // 设置过滤表前缀
+                    builder.mapperBuilder().enableFileOverride().mapperAnnotation(Mapper.class);
+                    builder.serviceBuilder().enableFileOverride();
+                    builder.entityBuilder().enableFileOverride();
                 })
                 .templateConfig(builder -> {
                     builder.disable(TemplateType.CONTROLLER);

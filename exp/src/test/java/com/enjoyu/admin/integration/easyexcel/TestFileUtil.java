@@ -1,9 +1,19 @@
 package com.enjoyu.admin.integration.easyexcel;
 
+import org.junit.jupiter.api.Test;
+
 import java.io.File;
 import java.io.InputStream;
 
 public class TestFileUtil {
+
+    @Test
+    public void testPath() {
+        System.out.println(this.getClass().getResource("."));
+        System.out.println(this.getClass().getResource(""));
+        System.out.println(this.getClass().getResource("/"));
+        System.out.println(getPath());
+    }
 
     public static InputStream getResourcesFileInputStream(String fileName) {
         return Thread.currentThread().getContextClassLoader().getResourceAsStream("" + fileName);

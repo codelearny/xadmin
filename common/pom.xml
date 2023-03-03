@@ -13,7 +13,7 @@
     <properties>
         <commons.io.version>2.11.0</commons.io.version>
         <commons.collections4.version>4.4</commons.collections4.version>
-        <guava.version>31.0.1-jre</guava.version>
+        <guava.version>31.1-jre</guava.version>
     </properties>
 
     <dependencies>
@@ -45,6 +45,11 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>${guava.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.javaparser</groupId>
+            <artifactId>javaparser-symbol-solver-core</artifactId>
+            <version>3.25.0</version>
         </dependency>
     </dependencies>
 

@@ -11,8 +11,7 @@
 
     <artifactId>web</artifactId>
     <properties>
-        <mybatis.plus.version>3.4.3.4</mybatis.plus.version>
-        <mybatis.plus.generator.version>3.5.1</mybatis.plus.generator.version>
+        <mybatis.plus.version>3.5.3.1</mybatis.plus.version>
         <easy-captcha.version>1.6.2</easy-captcha.version>
         <shiro.version>1.8.0</shiro.version>
     </properties>
@@ -65,12 +64,13 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-generator</artifactId>
-            <version>${mybatis.plus.generator.version}</version>
+            <version>${mybatis.plus.version}</version>
         </dependency>
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter-test</artifactId>
             <version>${mybatis.plus.version}</version>
+            <scope>test</scope>
         </dependency>
         <!-- freemarker 模板引擎 -->
         <dependency>
