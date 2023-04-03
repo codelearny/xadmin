@@ -9,6 +9,9 @@ import net.sf.jsqlparser.statement.insert.Insert;
 import net.sf.jsqlparser.statement.select.*;
 import org.junit.jupiter.api.Test;
 
+/**
+ * {@link net.sf.jsqlparser.util.TablesNamesFinder}
+ */
 public class SqlParserTest {
     @Test
     public void test() throws JSQLParserException {
