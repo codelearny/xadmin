@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: daemon
+  profiles:
+    active: dev
+
+logging:
+  level:
+    root: info
+    org.springframework.context.support.PostProcessorRegistrationDelegate*: error

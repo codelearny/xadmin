@@ -35,6 +35,20 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <!--mapStruct-->
             <dependency>
                 <groupId>org.mapstruct</groupId>
@@ -48,6 +62,8 @@
         <module>common</module>
         <module>exp</module>
         <module>web</module>
+        <module>daemon</module>
+        <module>reactor</module>
     </modules>
 
     <properties>
@@ -63,7 +79,9 @@
         <docker.maven.plugin.version>1.2.2</docker.maven.plugin.version>
         <xaVersion>0.0.1-SNAPSHOT</xaVersion>
         <mapstruct.version>1.5.0.Beta2</mapstruct.version>
-        <spring-boot.version>2.5.5</spring-boot.version>
+        <spring-boot.version>2.6.11</spring-boot.version>
+        <spring-cloud.version>2021.0.4</spring-cloud.version>
+        <spring-cloud-alibaba.version>2021.0.4.0</spring-cloud-alibaba.version>
     </properties>
 
     <!-- Build Settings -->
